@@ -1263,6 +1263,32 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &276080659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+  m_PrefabInstance: {fileID: 307181456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &276080661
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276080659}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ad5277410c5e53e43ae4ae3bf2e694a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &307181456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1323,6 +1349,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6145162741953089045, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000002384186
+      objectReference: {fileID: 0}
+    - target: {fileID: -4786033448883637728, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000002384186
+      objectReference: {fileID: 0}
+    - target: {fileID: -3470274864980235388, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2812469662981143093, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000002384186
+      objectReference: {fileID: 0}
+    - target: {fileID: -381021120655910468, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000002384186
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
       propertyPath: m_Name
       value: GarageDoor (2)
@@ -1330,7 +1376,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 276080661}
   m_SourcePrefab: {fileID: 100100000, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
 --- !u!1 &312267928
 GameObject:
@@ -3834,13 +3883,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0, y: 0.98086053, z: -0, w: 0.19471185}
+  m_LocalPosition: {x: 2.57, y: 1.57, z: 2.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 157.544, z: 0}
 --- !u!1001 &973766265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7879,6 +7928,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906151649}
   m_Mesh: {fileID: 472129418051951168, guid: 9b979e26e3bbeb349a2ebead64844f63, type: 3}
+--- !u!1 &1913463083 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+  m_PrefabInstance: {fileID: 1934838579}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1913463084
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913463083}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d599335e5d46e75449939e6f2ed8d492, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1913620643
 GameObject:
   m_ObjectHideFlags: 0
@@ -8022,6 +8097,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6145162741953089045, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000002384186
+      objectReference: {fileID: 0}
+    - target: {fileID: -4786033448883637728, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000002384186
+      objectReference: {fileID: 0}
+    - target: {fileID: -3470274864980235388, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2812469662981143093, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000002384186
+      objectReference: {fileID: 0}
+    - target: {fileID: -381021120655910468, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000002384186
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
       propertyPath: m_Name
       value: GarageDoor (1)
@@ -8029,7 +8124,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1913463084}
   m_SourcePrefab: {fileID: 100100000, guid: ec2e6605554001a4d99e39462b116a02, type: 3}
 --- !u!1 &2015065682
 GameObject:
