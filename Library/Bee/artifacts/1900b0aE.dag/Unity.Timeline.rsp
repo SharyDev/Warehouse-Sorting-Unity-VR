@@ -122,6 +122,9 @@
 -define:TIMELINE_FRAMEACCURATE
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
+-r:"Assets/Sketchfab For Unity/Dependencies/Libraries/GLTFSerialization.dll"
+-r:"Assets/Sketchfab For Unity/Dependencies/Libraries/Ionic.Zip.Unity.dll"
+-r:"Assets/Sketchfab For Unity/Dependencies/Libraries/SketchfabPlugin.dll"
 -r:"B:/Program Files/Unity 2022.3.46f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"B:/Program Files/Unity 2022.3.46f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"B:/Program Files/Unity 2022.3.46f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"

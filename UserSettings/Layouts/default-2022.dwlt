@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 53
+  controlID: 52
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 54
+  controlID: 53
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 55
+  controlID: 54
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -324,7 +324,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Rocklynn Productions - End Credits (Refuge of the Fallen) Music Pack
+    - Assets
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -332,16 +332,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Rocklynn Productions - End Credits (Refuge of the Fallen) Music Pack
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: B:\COSC4426 Project\Warehouse-Sorting-Unity-VR
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: f8260000
-    m_LastClickedID: 9976
-    m_ExpandedIDs: 000000000690000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 60}
+    m_SelectedIDs: 768c0000
+    m_LastClickedID: 35958
+    m_ExpandedIDs: 00000000768c000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -369,7 +369,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000006900000
+    m_ExpandedIDs: 00000000768c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -508,24 +508,24 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 208}
-      m_SelectedIDs: e06d0000
-      m_LastClickedID: 28128
-      m_ExpandedIDs: 66f1ffffdc6c0000
+      scrollPos: {x: 0, y: 1015.3333}
+      m_SelectedIDs: eab2ffff
+      m_LastClickedID: -19734
+      m_ExpandedIDs: 76ddffff7addffff7eddffff82ddffff86ddffff34f7ffff2afbffff8e6400001670000028750000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: A_man_sitting (1)
+        m_OriginalName: A_man_sitting (1)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -19734
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 4}
       m_SearchString: 
@@ -878,9 +878,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 7.2220335, y: 0.41274425, z: -2.840434}
+    m_Target: {x: 4.0442543, y: 0.51632106, z: -6.5268106}
     speed: 2
-    m_Value: {x: 7.2220335, y: 0.41274425, z: -2.840434}
+    m_Value: {x: 4.0442543, y: 0.51632106, z: -6.5268106}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -926,13 +926,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.06473798, y: 0.7868295, z: -0.08385669, w: 0.60855585}
+    m_Target: {x: 0.33459717, y: 0.38397783, z: -0.15187286, w: 0.8475724}
     speed: 2
-    m_Value: {x: 0.06532431, y: 0.7864842, z: -0.08461577, w: 0.60828894}
+    m_Value: {x: 0.33545578, y: 0.3828177, z: -0.15185814, w: 0.84726566}
   m_Size:
-    m_Target: 2.6061256
+    m_Target: 0.32337183
     speed: 2
-    m_Value: 2.4939
+    m_Value: 0.30944672
   m_Ortho:
     m_Target: 0
     speed: 2
