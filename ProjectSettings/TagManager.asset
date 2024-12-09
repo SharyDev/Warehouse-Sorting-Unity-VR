@@ -13,6 +13,7 @@ TagManager:
   - Forklift
   - ConveyerBelt
   - Truck
+  - ForkliftWorking
   layers:
   - Default
   - TransparentFX
@@ -49,4 +50,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Camera
+    uniqueID: 2777612221
     locked: 0

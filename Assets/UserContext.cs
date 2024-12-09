@@ -6,45 +6,54 @@ using TMPro;
 [System.Serializable]
 public class TagInfo
 {
-    //Object that the script will target (e.g. box user is looking at with controller)
-    public string tag; 
-    //This description will show up on the users screen to explain what the object is.
-    public string description; 
-    //Audio clip plays when the user presses the button on a valid object.
-    public AudioClip audioClip; 
+    public string tag;
+    public string description;
+    public AudioClip audioClip;
 }
 
 public class UserContext : MonoBehaviour
 {
     [Header("UI")]
-    public TextMeshProUGUI infoText; 
+    public TextMeshProUGUI infoText;
 
     [Header("Audio")]
-    public AudioSource audioSource; 
+    public AudioSource audioSource;
 
     [Header("Raycast Settings")]
-    public Transform rightControllerTransform; 
+    public Transform rightControllerTransform;
     public float raycastDistance = 12f;
 
     [Header("Tag Information")]
-    public List<TagInfo> tagInfoList; 
+    public List<TagInfo> tagInfoList;
+
+    [Header("Player Rig")]
+    public Transform playerRig; 
 
     private InputDevice rightHandDevice;
+    private InputDevice leftHandDevice;
+
     private bool primaryButtonPressed = false;
     private bool secondaryButtonPressed = false;
+    private bool leftPrimaryButtonPressed = false;   
+    private bool leftSecondaryButtonPressed = false; 
 
     void Start()
     {
-        //Attempts to get the right hand controller, if an Occulus is not connected then it should
-        //fallback into using the unity XR Device Simulator.
+        // Get right hand device
         rightHandDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-
         if (!rightHandDevice.isValid)
         {
             Debug.LogWarning("Right-hand controller is not valid. Falling back to simulator.");
         }
 
-        // Ensure the fallback transform is assigned for the XR Device Simulator
+        // Get left hand device
+        leftHandDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+        if (!leftHandDevice.isValid)
+        {
+            Debug.LogWarning("Left-hand controller is not valid. Some VR features may not work.");
+        }
+
+        // Ensure fallback transform is assigned
         if (rightControllerTransform == null)
         {
             Debug.LogError("RightControllerTransform is not assigned. Please assign it in the Inspector.");
@@ -57,29 +66,70 @@ public class UserContext : MonoBehaviour
 
     void Update()
     {
-        //Attempts to get the right hand controller, if an Occulus is not connected then it should
-        //fallback into using the unity XR Device Simulator.
+        // Re-acquire devices if not valid
         if (!rightHandDevice.isValid)
         {
             rightHandDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-
             if (!rightHandDevice.isValid)
             {
                 Debug.LogWarning("Right-hand controller is still not valid. Continuing with fallback.");
             }
         }
-        else
+
+        if (!leftHandDevice.isValid)
         {
-            //Input values for primary and secondary buttons
-            rightHandDevice.TryGetFeatureValue(CommonUsages.primaryButton, out primaryButtonPressed);
-            rightHandDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out secondaryButtonPressed);
+            leftHandDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+            if (!leftHandDevice.isValid)
+            {
+                Debug.LogWarning("Left-hand controller is still not valid.");
+            }
         }
 
-        //Simulates button presses for XR Device Simulator with left-click fallback (this is used only
-        //if no VR device is connected)
-        if (!rightHandDevice.isValid)
+        //For when using Occulus.
+        if (rightHandDevice.isValid && leftHandDevice.isValid)
         {
-            if (Input.GetMouseButtonDown(0)) 
+            //Gets the button states from the right hand controller.
+            rightHandDevice.TryGetFeatureValue(CommonUsages.primaryButton, out primaryButtonPressed);
+            rightHandDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out secondaryButtonPressed);
+
+            //Gets the button states from the left hand controller.
+            leftHandDevice.TryGetFeatureValue(CommonUsages.primaryButton, out leftPrimaryButtonPressed);
+            leftHandDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out leftSecondaryButtonPressed);
+
+            // If left X button is pressed
+            if (leftPrimaryButtonPressed)
+            {
+                if (infoText != null)
+                {
+                    infoText.text = "ADD INSTRUCTIONS HERE";
+                    Debug.Log("Updated UI text to ADD INSTRUCTIONS HERE due to X press on left controller.");
+                }
+                else
+                {
+                    Debug.LogError("InfoText is not assigned!");
+                }
+            }
+
+            // If left Y button is pressed -> reset player to (0,0,0)
+            if (leftSecondaryButtonPressed)
+            {
+                if (playerRig != null)
+                {
+                    playerRig.position = Vector3.zero;
+                    Debug.Log("Player/Cam Rig position reset to (0,0,0) due to Y press on left controller.");
+                }
+                else
+                {
+                    Debug.LogError("PlayerRig not assigned! Cannot reset position.");
+                }
+            }
+
+        }
+        else
+        {
+            // This is the fallback (XR simulator) mode
+            // Simulates button presses with left-click fallback on PC
+            if (Input.GetMouseButtonDown(0))
             {
                 primaryButtonPressed = true;
             }
@@ -87,13 +137,13 @@ public class UserContext : MonoBehaviour
             {
                 primaryButtonPressed = false;
             }
+
+            // In fallback mode, we do not perform the new X/Y logic.
         }
 
-        Debug.Log($"Primary Button: {primaryButtonPressed}, Secondary Button: {secondaryButtonPressed}");
+        Debug.Log($"Primary Button (Right): {primaryButtonPressed}, Secondary Button (Right): {secondaryButtonPressed}, Left Primary: {leftPrimaryButtonPressed}, Left Secondary: {leftSecondaryButtonPressed}");
 
-
-        //Rays used to "hit" objects with tags, such as a box. Note items that use this must
-        //have a collider attached!
+        // Raycasting for object interactions using right controller
         Ray ray = new Ray(rightControllerTransform.position, rightControllerTransform.forward);
         RaycastHit hit;
 
@@ -105,7 +155,7 @@ public class UserContext : MonoBehaviour
 
             if (primaryButtonPressed || secondaryButtonPressed)
             {
-                Debug.Log("Button pressed, handling interaction...");
+                Debug.Log("Right controller button pressed, handling interaction...");
                 HandleObjectTag(hit.collider.tag);
             }
         }
@@ -128,7 +178,8 @@ public class UserContext : MonoBehaviour
         else
         {
             Debug.LogWarning($"No TagInfo found for tag: {objectTag}");
-            infoText.text = "";
+            if (infoText != null)
+                infoText.text = "";
         }
     }
 
@@ -143,6 +194,7 @@ public class UserContext : MonoBehaviour
         {
             Debug.LogError("InfoText is not assigned!");
         }
+
         if (audioSource != null && clip != null)
         {
             audioSource.PlayOneShot(clip);
