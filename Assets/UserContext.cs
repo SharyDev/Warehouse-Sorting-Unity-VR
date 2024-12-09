@@ -16,12 +16,17 @@ public class UserContext : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI infoText;
 
-    [Header("Audio")]
+    [Header("Triggered Audio")]
     public AudioSource audioSource;
+
+    [Header("Background Music")]
+    public AudioSource backgroundAudioSource;
+    public List<AudioClip> backgroundMusicClips;
 
     [Header("Raycast Settings")]
     public Transform rightControllerTransform;
-    public float raycastDistance = 12f;
+    //From how far away can the controller's "view" see objects.
+    public float raycastDistance = 25f;
 
     [Header("Tag Information")]
     public List<TagInfo> tagInfoList;
@@ -48,14 +53,26 @@ public class UserContext : MonoBehaviour
     private bool prevLeftPrimaryButtonPressed = false;
     private bool prevLeftSecondaryButtonPressed = false;
 
+    private int currentTrackIndex = 0;
+
     void Start()
     {
+        //Intializes the left and right VR controller (tested on Meta Quest 2).
         rightHandDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
         leftHandDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+
+        //Starts playing any background music if set in the editor.
+        if (backgroundAudioSource != null && backgroundMusicClips != null && backgroundMusicClips.Count > 0)
+        {
+            PlayBackgroundTrack(currentTrackIndex);
+        }
     }
 
     void Update()
     {
+        //Will try to find if the device is valid, fallsback to XR Device Simulator
+        //Note the XR Device Simulator should be disabled when testing/using a real
+        //VR headset.
         if (!rightHandDevice.isValid)
             rightHandDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
 
@@ -76,10 +93,10 @@ public class UserContext : MonoBehaviour
 
             if ((leftPrimaryButtonDown || leftSecondaryButtonDown) && infoText != null)
             {
-                infoText.text = "Right Joystick to move, Point to any object and click B or A to get a description" +
-                    "Left joystick to jump. The right joystick will move in the direction you're moving in." +
-                    "Moving the right joystick backwards will make the camera flip to look backwards." +
-                    "Press B or A to remove these instructions and press Y or X to see them again.";
+                infoText.text = "Right Joystick to move, Point to any object and click B or A to get a description. " +
+                                "Left joystick to jump. The right joystick will move in the direction you're moving in. " +
+                                "Moving the right joystick backwards will make the camera flip to look backwards. " +
+                                "Press B or A to remove these instructions and press Y or X to see them again.";
             }
 
             Vector2 leftAxis;
@@ -122,6 +139,7 @@ public class UserContext : MonoBehaviour
         }
         else
         {
+            //This is the fallback part the if VR devices are not found.
             if (Input.GetMouseButtonDown(0))
             {
                 primaryButtonPressed = true;
@@ -137,8 +155,20 @@ public class UserContext : MonoBehaviour
                 primaryButtonPressed = false;
             }
         }
+
+        //Checks if background track has finished in order to play the next one (if there is a next one).
+        if (backgroundAudioSource != null && !backgroundAudioSource.isPlaying && backgroundMusicClips.Count > 0)
+        {
+            //Moves to the next track.
+            currentTrackIndex = (currentTrackIndex + 1) % backgroundMusicClips.Count;
+            PlayBackgroundTrack(currentTrackIndex);
+        }
     }
 
+    /*
+     *Manages the UI when an Object's Tag is detected in the right controller's
+     *view.
+     */
     private void HandleObjectTag(string objectTag)
     {
         TagInfo tagInfo = tagInfoList.Find(info => info.tag == objectTag);
@@ -152,7 +182,9 @@ public class UserContext : MonoBehaviour
                 infoText.text = "";
         }
     }
-
+    /*
+     *Used to update the UI and play a quick audio sound.
+     */
     private void UpdateUIAndPlayAudio(string description, AudioClip clip)
     {
         if (infoText != null)
@@ -162,7 +194,31 @@ public class UserContext : MonoBehaviour
 
         if (audioSource != null && clip != null)
         {
-            audioSource.PlayOneShot(clip);
+            audioSource.clip = clip;
+            audioSource.loop = false;
+            audioSource.Play();
+            AudioClip currentlyPlayingClip = clip;
+            StartCoroutine(StopAudioAfterSeconds(currentlyPlayingClip, 8f)); 
         }
+    }
+
+    private System.Collections.IEnumerator StopAudioAfterSeconds(AudioClip originalClip, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        if (audioSource.isPlaying && audioSource.clip == originalClip)
+        {
+            audioSource.Stop();
+        }
+    }
+
+
+
+    private void PlayBackgroundTrack(int index)
+    {
+        if (backgroundMusicClips.Count == 0) return;
+
+        backgroundAudioSource.loop = false; 
+        backgroundAudioSource.clip = backgroundMusicClips[index];
+        backgroundAudioSource.Play();
     }
 }
