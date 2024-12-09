@@ -12,6 +12,7 @@ TagManager:
   - ReceivingDoor
   - Forklift
   - ConveyerBelt
+  - Truck
   layers:
   - Default
   - TransparentFX
