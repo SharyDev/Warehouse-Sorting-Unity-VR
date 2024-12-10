@@ -16,6 +16,7 @@ TagManager:
   - ForkliftWorking
   - OrderPicker
   - SafteyZone
+  - OutsideBox
   layers:
   - Default
   - TransparentFX
